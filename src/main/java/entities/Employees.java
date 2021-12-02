@@ -95,4 +95,9 @@ public class Employees {
 		this.adresse = adresse;
 	}
 
+	public static void add(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

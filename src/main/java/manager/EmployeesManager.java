@@ -1,5 +1,8 @@
 package manager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -30,8 +33,10 @@ public class EmployeesManager {
 		sessionFactory.close();
 	}
 
+    ArrayList<String> employeeList = new ArrayList<String>();
 	protected void create() {
 		// Creation d'un salarié fictif
+
 		Employees employe = new Employees();
 		employe.setNom("Toto");
 		employe.setPrenom("TotoJr");
@@ -40,7 +45,7 @@ public class EmployeesManager {
 		employe.setFonction("Dev Jr");
 		employe.setTelephone(836656565);
 		employe.setAdresse("30 rue du trotoire d'en face, 59000 Lille");
-
+		
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(employe);
@@ -107,18 +112,41 @@ public class EmployeesManager {
 		session.close();
 	}
 
+	protected List <Employees> maListe = new ArrayList<Employees>(); 
+	protected static void afficherTous() {
+		// NON FONCTIONNELLE //
+		
+		// Ici on veut afficher la liste de tous les employés de la base de données SANS faire de query à la BDD
+			// Etapes : 
+		// 1.On créé une liste d'objet vide qui repertoriera l'ensemble des salariés
+		// 2. à chaque push dans la bdd (fonction create) on veut aussi push aussi dans la liste
+		// 3. Enfin on affichera la liste : 
+		
+	     // Créer un ArrayList<String>
+
+// Tentative de récupération de la liste
+	    Employees.add("test1");
+	    
+	    int size = Employees.size();
+	    Employees.add("test2");
+	     for(int i = 0; i< Employees.size ;i++)
+	        System.out.println(employeeList1.get(i));
+	  }
+		
+
 	public static void main(String[] args) {
-		EmployeesManager manager = new EmployeesManager();
-		manager.setup();
+//		EmployeesManager manager = new EmployeesManager();
+//		manager.setup();
 		
 // TERRAIN DE JEU POUR TESTER LES FONCTIONS
-		
+
+		EmployeesManager.afficherTous();
 //	manager.create();
 //		manager.read(1);
 //		Employees employe = manager.read(1);		
 //		manager.delete(employe);
 //		manager.update(id, book);
-		manager.exit();
+//		manager.exit();
 
 	}
 }
